@@ -26,6 +26,7 @@ const (
 	TrueNAS   = Distro("truenas")
 	Gokrazy   = Distro("gokrazy")
 	WDMyCloud = Distro("wdmycloud")
+	YXCVM     = Distro("yxcvm")
 )
 
 var distroAtomic atomic.Value // of Distro
@@ -79,6 +80,8 @@ func linuxDistro() Distro {
 		return WDMyCloud
 	case have("/usr/sbin/wd_crontab.sh"): // Western Digital MyCloud OS5
 		return WDMyCloud
+	case have("/etc/hwrevision"):
+		return YXCVM
 	}
 	return ""
 }

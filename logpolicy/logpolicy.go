@@ -553,7 +553,7 @@ func New(collection string) *Policy {
 
 	// NAS disks cannot hibernate if we're writing logs to them all the time.
 	// https://github.com/tailscale/tailscale/issues/3551
-	if runtime.GOOS == "linux" && (distro.Get() == distro.Synology || distro.Get() == distro.QNAP) {
+	if runtime.GOOS == "linux" && (distro.Get() == distro.Synology || distro.Get() == distro.QNAP || distro.Get() == distro.YXCVM) {
 		tmpfsLogs := "/tmp/tailscale-logs"
 		if err := os.MkdirAll(tmpfsLogs, 0755); err == nil {
 			filchPrefix = filepath.Join(tmpfsLogs, cmdName)
